@@ -1,0 +1,140 @@
+-- Database: ConpanyDB
+
+-- DROP DATABASE IF EXISTS "ConpanyDB";
+
+CREATE DATABASE "ConpanyDB"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Uzbek (Cyrillic)_Uzbekistan.1251'
+    LC_CTYPE = 'Uzbek (Cyrillic)_Uzbekistan.1251'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+	
+	
+	-- Create enum tables
+CREATE TABLE enum_project_type (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE employee_level (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE enum_status (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE enum_importance_level (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create main tables
+CREATE TABLE Organization (
+    Id SERIAL PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Address VARCHAR(255) NOT NULL,
+    Phone_Number VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE "User" (
+    id SERIAL PRIMARY KEY,
+    FullName VARCHAR(255) NOT NULL,
+    Username VARCHAR(255) NOT NULL UNIQUE,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    PasswordHash TEXT NOT NULL,
+    CreatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    LastLogin TIMESTAMP,
+    IsActive BOOLEAN NOT NULL DEFAULT TRUE,
+    Phone VARCHAR(255),
+    Address VARCHAR(255)
+);
+
+CREATE TABLE Role (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE UserRole (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES "User" (id) ON DELETE CASCADE,
+    role_id INTEGER REFERENCES Role (id) ON DELETE CASCADE
+);
+CREATE TABLE Employee (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    employee_Name VARCHAR(255) NOT NULL,
+    employee_level INTEGER,
+    organization_Id INTEGER,
+    email VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(255) NOT NULL,
+    hireDate DATE NOT NULL,
+    departmentId INTEGER,
+    salary DECIMAL(10, 2) NOT NULL,
+    isActive BOOLEAN NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES "User" (id) ON DELETE CASCADE,
+    FOREIGN KEY (employee_level) REFERENCES employee_level (id),
+    FOREIGN KEY (organization_Id) REFERENCES Organization (Id) ON DELETE CASCADE
+);
+
+CREATE TABLE Project (
+    id SERIAL PRIMARY KEY,
+    ownerId INTEGER,
+    project_type_id INTEGER,
+    project_level_id INTEGER,
+    importance_level_id INTEGER,
+    appointedDay DATE,
+    organizationId INTEGER,
+    assignee_id INTEGER,
+    FOREIGN KEY (ownerId) REFERENCES "User" (id),
+    FOREIGN KEY (project_type_id) REFERENCES enum_project_type (id),
+    FOREIGN KEY (organizationId) REFERENCES Organization (Id) ON DELETE CASCADE,
+    FOREIGN KEY (assignee_id) REFERENCES Employee (id)
+);
+
+CREATE TABLE Task (
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER,
+    employee_id INTEGER,
+    taskStatus INTEGER,
+    startTime TIMESTAMP,
+    endTime TIMESTAMP,
+    taskLevel INTEGER,
+    importantLevel INTEGER,
+    FOREIGN KEY (project_id) REFERENCES Project (id) ON DELETE CASCADE,
+    FOREIGN KEY (employee_id) REFERENCES Employee (id) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE assignee (
+    id SERIAL PRIMARY KEY,
+    employee_id INTEGER NOT NULL,
+    project_id INTEGER NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES Employee(id),
+    FOREIGN KEY (project_id) REFERENCES Project(id)
+);
+
+CREATE TABLE assignee_et (
+    id SERIAL PRIMARY KEY,
+    employee_id INTEGER NOT NULL,
+    task_id INTEGER NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES Employee(id),
+    FOREIGN KEY (task_id) REFERENCES Task(id)
+);
+	
