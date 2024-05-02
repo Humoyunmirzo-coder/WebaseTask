@@ -13,7 +13,7 @@ public partial class AssigneeEt
 
     [Column("employee_id")]
     public int EmployeeId { get; set; }
-
+        
     [Column("task_id")]
     public int TaskId { get; set; }
 
