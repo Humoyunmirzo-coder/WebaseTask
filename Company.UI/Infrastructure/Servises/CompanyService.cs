@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domen.GenericRepository;
 
 namespace Infrastructure.Servises
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService
     {
         private readonly ConpanyDbContext _conpanyDbContext;
 
