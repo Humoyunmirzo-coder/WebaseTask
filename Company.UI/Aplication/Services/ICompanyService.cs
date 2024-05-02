@@ -7,40 +7,40 @@ namespace Aplication.Services
     {
         Task<Employee> CreateEmployeeAynce(Employee employee);
         Task<Employee> UpdateEmployeeAynce(Employee employee);
-        Task<Employee> DeleteEmployeeAynce(int Id);
+        Task<bool> DeleteEmployeeAynce(int Id);
         Task<Employee> GetByIdEmployee(int Id);
-        Task<Employee> GetAllEmployeeAynce();
+        Task<List<Employee>> GetAllEmployeeAynce();
 
 
         Task<Organization> CreateOrganizationAynce(Organization organization);
         Task<Organization> UpdateOrganizationAynce(Organization organization);
-        Task<Organization> DeleteOrganizationAynce(int Id);
+        Task<bool> DeleteOrganizationAynce(int Id);
         Task<Organization> GetByIdOrganizationAynce(int Id);
-        Task<Organization> GetAllOrganizationAynce();
+        Task<List<Organization>> GetAllOrganizationAynce();
 
         Task<Project> CreateProjectAynce(Project project);
         Task<Project> UpdateProjectAynce(Project project);
-        Task<Project> DeleteProjectAynce(int Id);
+        Task<bool> DeleteProjectAynce(int Id);
         Task<Project> GetByIdProjectAynce(int Id);
-        Task<Project> GetAllProjectAynce();
+        Task<List<Project>> GetAllProjectAynce();
 
 
         Task<Role> CreateRoleAynce(Role role);
         Task<Role> UpdateRoleAynce(Role role);
-        Task<Role> DeleteRoleAynce(int Id);
+        Task<bool> DeleteRoleAynce(int Id);
         Task<Role> GetByIdRoleAynce(int Id);
-        Task<Role> GetAllRoleAynce();
+        Task< List<Role>> GetAllRoleAynce();
 
         Task<Task> CreateTaskAynce(Task task);
         Task<Task> UpdateTaskAynce(Task task);
-        Task<Task> DeleteTaskAynce(int Id);
+        Task<bool> DeleteTaskAynce(int Id);
         Task<Task> GetByIdTaskAynce(int Id);
-        Task<Task> GetAllTaskAynce();
+        Task< List<Task>> GetAllTaskAynce();
 
         Task<User> CreateUserAynce(User user);
         Task<User> UpdateUserAynce(User user);
-        Task<User> DeleteUserAynce(int Id);
+        Task<bool> DeleteUserAynce(int Id);
         Task<User> GetByIdUserAynce(int Id);
-        Task<User> GetAllUserAynce();
+        Task< List<User>> GetAllUserAynce();
     }
 }
