@@ -10,11 +10,12 @@ namespace Aplication.Services
 {
     public  interface IEmployeeService
     {
-        Task<EmployeeGetDto> CreateEmployeeAynce(EmployeeCreateDto employee);
-        Task<EmployeeGetDto> UpdateEmployeeAynce(EmployeeUpdateDto employee);
-        Task<bool> DeleteEmployeeAynce(int Id);
-        Task<EmployeeGetDto> GetByIdEmployee(int Id);
-        Task<List<EmployeeGetDto>> GetAllEmployeeAynce();
+        Task<EmployeeGetDto> CreateEmployeeAsync(EmployeeCreateDto employee);
+        Task<EmployeeGetDto> UpdateEmployeeAsync(EmployeeUpdateDto employee);
+        Task<bool> DeleteEmployeeAsync(int id);
+        Task<EmployeeGetDto> GetByIdEmployeeAsync(int id);
+        Task<List<EmployeeGetDto>> GetAllEmployeesAsync();
+
 
     }
 }

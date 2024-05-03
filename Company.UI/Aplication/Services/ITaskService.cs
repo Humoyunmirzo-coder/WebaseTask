@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domen.EmtityDTO.TaskDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace Aplication.Services
     public  interface ITaskService
     {
 
-        Task<Task> CreateTaskAynce(Task task);
-        Task<Task> UpdateTaskAynce(Task task);
+        Task<TaskGetDto> CreateTaskAynce(TaskCreateDto task);
+        Task<TaskGetDto> UpdateTaskAynce(TaskUpdateDto task);
         Task<bool> DeleteTaskAynce(int Id);
-        Task<Task> GetByIdTaskAynce(int Id);
-        Task<List<Task>> GetAllTaskAynce();
+        Task<TaskGetDto> GetByIdTaskAynce(int Id);
+        Task<List<TaskGetDto>> GetAllTaskAynce();
     }
 }
