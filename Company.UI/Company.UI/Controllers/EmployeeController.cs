@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]/[action]")]
 [ApiController]
 public class EmployeeController : ControllerBase
 {
@@ -16,7 +16,7 @@ public class EmployeeController : ControllerBase
         _employeeService = employeeService;
     }
     [HttpGet]
-    public async Task<IActionResult> GetEmployees()
+    public async Task<IActionResult> GetAllEmployees()
     {
         List<EmployeeGetDto> employees = await _employeeService.GetAllEmployeesAsync();
         return Ok(employees);
@@ -30,10 +30,10 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateEmployee(EmployeeCreateDto employeeCreateDto)
+    public async Task<EmployeeGetDto> CreateEmployee(EmployeeCreateDto employeeCreateDto)
     {
         var employe = await _employeeService.CreateEmployeeAsync(employeeCreateDto);
-        return Ok(employe);
+        return employe;
     }
 
 

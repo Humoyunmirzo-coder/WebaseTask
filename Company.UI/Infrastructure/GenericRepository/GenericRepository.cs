@@ -44,7 +44,7 @@ namespace Infrastructure.GenericRepository
 
         public async  Task<T> GetByIdAsync(int id)
         {
-            return await _conpanyDbContext.Set<T>().FirstOrDefaultAsync();
+            return await _conpanyDbContext.Set<T>().FindAsync(id);
         }
 
         public async  Task<bool> UpdateAsync(T entity)

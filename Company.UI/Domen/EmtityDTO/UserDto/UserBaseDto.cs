@@ -5,9 +5,7 @@ namespace Domen.EmtityDTO.UserDto
 {
     public  class UserBaseDto 
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
+        
 
         [Column("fullname")]
         [StringLength(255)]
@@ -24,11 +22,7 @@ namespace Domen.EmtityDTO.UserDto
         [Column("passwordhash")]
         public string Passwordhash { get; set; } = null!;
 
-        [Column("createdat", TypeName = "timestamp without time zone")]
-        public DateTime Createdat { get; set; }
 
-        [Column("lastlogin", TypeName = "timestamp without time zone")]
-        public DateTime? Lastlogin { get; set; }
 
         [Column("isactive")]
         public bool Isactive { get; set; }
@@ -41,14 +35,7 @@ namespace Domen.EmtityDTO.UserDto
         [StringLength(255)]
         public string? Address { get; set; }
 
-        [InverseProperty("User")]
-        public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
-
-        [InverseProperty("Owner")]
-        public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
-
-        [InverseProperty("User")]
-        public virtual ICollection<Userrole> Userroles { get; set; } = new List<Userrole>();
+       
 
     }
 }
