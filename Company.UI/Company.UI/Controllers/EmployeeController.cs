@@ -15,7 +15,13 @@ namespace Company.UI.Controllers
         {
             _employeeService = employeeService;
         }
- 
+        [HttpGet]
+        public async Task<IActionResult> GetEmployees()
+        {
+            List<EmployeeGetDto> employees =await  _employeeService.GetAllEmployeesAsync();
+            return Ok(employees); 
+        }
+
 
     }
 }
