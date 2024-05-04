@@ -16,11 +16,7 @@ namespace Domen.EmtityDTO.EmployeeDto
         public int? EmployeeLevel { get; set; }
 
         public int? OrganizationId { get; set; }
-
-        [StringLength(255)]
         public string Email { get; set; } = null!;
-
-        [StringLength(255)]
         public string Phonenumber { get; set; } = null!;
 
         public DateOnly Hiredate { get; set; }

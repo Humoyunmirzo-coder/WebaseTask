@@ -9,6 +9,7 @@ using Infrastructure.Servises;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
 
 internal class Program
 {
@@ -27,7 +28,7 @@ internal class Program
         builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         builder.Services.AddScoped<IEmployeeService, EmployeeService>();
         builder.Services.AddControllers();
-     //   builder.Services.AddAutoMapper(typeof(MappingProfile));
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

@@ -8,73 +8,25 @@ namespace Domen.EmtityDTO.EmployeeDto
 {
     public class EmployeeBeseDto
     {
-        [Key]
-        [Column("id")]
         public int Id { get; set; }
-
-        [Column("user_id")]
         public int UserId { get; set; }
-
-        [Column("employee_name")]
-        [StringLength(255)]
         public string EmployeeName { get; set; } = null!;
-
-        [Column("employee_level")]
         public int? EmployeeLevel { get; set; }
-
-        [Column("organization_id")]
         public int? OrganizationId { get; set; }
-
-        [Column("email")]
-        [StringLength(255)]
         public string Email { get; set; } = null!;
-
-        [Column("phonenumber")]
-        [StringLength(255)]
         public string Phonenumber { get; set; } = null!;
-
-        [Column("hiredate")]
         public DateOnly Hiredate { get; set; }
-
-        [Column("departmentid")]
         public int? Departmentid { get; set; }
-
-        [Column("salary")]
-        [Precision(10, 2)]
         public decimal Salary { get; set; }
-
-        [Column("isactive")]
         public bool Isactive { get; set; }
-
-        [InverseProperty("Employee")]
-
         public virtual ICollection<AssigneeEt> AssigneeEts { get; set; } = new List<AssigneeEt>();
-
-        [InverseProperty("Employee")]
-
         public virtual ICollection<Assignee> Assignees { get; set; } = new List<Assignee>();
 
-        [ForeignKey("EmployeeLevel")]
-        [InverseProperty("Employees")]
-
         public virtual EmployeeLevel? EmployeeLevelNavigation { get; set; }
-
-        [ForeignKey("OrganizationId")]
-        [InverseProperty("Employees")]
-        [JsonIgnore]
         public virtual Organization? Organization { get; set; }
 
-        [InverseProperty("Assignee")]
-
         public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
-
-        [InverseProperty("Employee")]
-
         public virtual ICollection<System.Threading.Tasks.Task> Tasks { get; set; } = new List<System.Threading.Tasks.Task>();
-
-        [ForeignKey("UserId")]
-        [InverseProperty("Employees")]
-
         public virtual User User { get; set; } = null!;
     }
 }

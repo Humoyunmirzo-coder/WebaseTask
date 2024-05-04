@@ -16,6 +16,8 @@ namespace Aplication.Services
         Task<EmployeeGetDto> GetByIdEmployeeAsync(int id);
         Task<List<EmployeeGetDto>> GetAllEmployeesAsync();
 
+     
+
 
     }
 }
