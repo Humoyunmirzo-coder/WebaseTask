@@ -10,5 +10,6 @@ namespace Infrastructure.Repositories
 {
     public  interface IOrganizationRepasitory : IGenericRepository<Organization>
     {
+
     }
 }

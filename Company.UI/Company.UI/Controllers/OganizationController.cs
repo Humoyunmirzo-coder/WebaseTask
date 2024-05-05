@@ -34,11 +34,12 @@ namespace Company.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<OrganizationGetDto> CreateEmployee(OrganizationCreateDto organizationCreateDto)
+        public async Task<OrganizationGetDto> CreateOrganization(OrganizationCreateDto organizationCreateDto)
         {
             var organization = await _organizationService.CreateOrganizationAsync(organizationCreateDto);
             return organization;
         }
+
         [HttpDelete("{id:int}")] 
         public async Task<IActionResult> DeleteEmployee(int id)
         {

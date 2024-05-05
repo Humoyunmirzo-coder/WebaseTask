@@ -33,7 +33,7 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteEmployeeAsync(int id)
         {
-                
+            return await _repository.DeleteAsync(id);
         }
 
       

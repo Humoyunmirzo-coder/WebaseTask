@@ -19,19 +19,25 @@ namespace Aplication.Mapping
  
         public MappingProfile()
         {
-            CreateMap<EmployeeGetDto, Employee>()
+            CreateMap<EmployeeCreateDto, Employee>()
                 .ForMember(dest => dest.Hiredate, opt => opt.MapFrom(src => DateOnly.FromDateTime(DateTime.Now)));
+            CreateMap<Employee, EmployeeGetDto>();
 
-            CreateMap<OrganizationGetDto, Organization>();
-            CreateMap<RoleGetDto, Role>();
-            CreateMap<TaskGetDto, Task>()
+            CreateMap<OrganizationCreateDto, Organization>();
+            CreateMap<Organization, OrganizationGetDto>();
+
+            CreateMap<RoleCreateDto, Role>();
+            CreateMap<Role, RoleGetDto>();
+
+            CreateMap<TaskCreateDto, Task>()
                 .ForMember(des => des.Starttime, opt => opt.MapFrom(src => DateTime.Now))  ;
-              
+            CreateMap<Task, TaskGetDto>();
+
 
 
             CreateMap<ProjectCreateDto, Project>()
-                .ForMember(des => des.Appointedday, opt => opt.MapFrom(src => DateTime.Now))
-                .ForMember(des => des., opt => opt.MapFrom(src => src.ProjectLevelId));
+                .ForMember(des => des.Appointedday, opt => opt.MapFrom(src => DateTime.Now));
+            CreateMap<Project, ProjectGetDto>();
 
             
        

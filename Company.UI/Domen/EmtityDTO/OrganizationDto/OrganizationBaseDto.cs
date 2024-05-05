@@ -11,9 +11,7 @@ namespace Domen.EmtityDTO.OrganizationDto
 {
     public  class OrganizationBaseDto
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
+      
 
         [Column("name")]
         [StringLength(255)]
@@ -31,10 +29,6 @@ namespace Domen.EmtityDTO.OrganizationDto
         [StringLength(255)]
         public string Email { get; set; } = null!;
 
-        [InverseProperty("Organization")]
-        public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
-
-        [InverseProperty("Organization")]
-        public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+   
     }
 }

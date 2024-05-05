@@ -30,6 +30,8 @@ internal class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IEmployeeService, EmployeeService>();
         builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IOrganizationService, OrganizationService>();
+        builder.Services.AddScoped<IOrganizationRepasitory, OrganizationRepasitory>();
         builder.Services.AddControllers();
         builder.Services.AddAutoMapper(typeof(MappingProfile));
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
