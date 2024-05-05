@@ -6,7 +6,7 @@ namespace Domen.EmtityDTO.EmployeeDto
     public class EmployeeBeseDto
     {
 
-
+        public int UserId { get; set; }
         public string EmployeeName { get; set; } = null!;
         public int? EmployeeLevel { get; set; }
         public int? OrganizationId { get; set; }

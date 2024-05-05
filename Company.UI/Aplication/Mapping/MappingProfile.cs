@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domen.EmtityDTO.RoleDto;
 
 namespace Aplication.Mapping
 {
@@ -19,17 +20,18 @@ namespace Aplication.Mapping
         public MappingProfile()
         {
             CreateMap<EmployeeGetDto, Employee>()
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-                .ForMember(dest => dest.OrganizationId, opt => opt.MapFrom(src => src.OrganizationId))
-                .ForMember(dest => dest.Hiredate,  opt => opt.MapFrom(src => DateOnly.FromDateTime( DateTime.Now)))
-                .ForMember(dest => dest.EmployeeLevel, opt => opt.MapFrom(src => src.EmployeeLevel)) ;
+                .ForMember(dest => dest.Hiredate, opt => opt.MapFrom(src => DateOnly.FromDateTime(DateTime.Now)));
 
-            CreateMap<EmployeeCreateDto, Employee>()
-                .ForMember(dest => dest.Phonenumber, opt => opt.MapFrom(src => src.Phonenumber));
+            CreateMap<OrganizationGetDto, Organization>();
+            CreateMap<RoleGetDto, Role>();
+            CreateMap<TaskGetDto, Task>()
+                .ForMember(des => des.Starttime, opt => opt.MapFrom(src => DateTime.Now))  ;
+              
+
 
             CreateMap<ProjectCreateDto, Project>()
                 .ForMember(des => des.Appointedday, opt => opt.MapFrom(src => DateTime.Now))
-                .ForMember(des => des.ProjectLevelId, opt => opt.MapFrom(src => src.ProjectLevelId));
+                .ForMember(des => des., opt => opt.MapFrom(src => src.ProjectLevelId));
 
             
        
