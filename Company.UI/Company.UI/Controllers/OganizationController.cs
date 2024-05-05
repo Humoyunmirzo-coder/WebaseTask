@@ -32,5 +32,37 @@ namespace Company.UI.Controllers
             var organization = await _organizationService.GetByIdOrganizationAsync(id);
             return Ok(organization);
         }
+
+        [HttpPost]
+        public async Task<OrganizationGetDto> CreateEmployee(OrganizationCreateDto organizationCreateDto)
+        {
+            var organization = await _organizationService.CreateOrganizationAsync(organizationCreateDto);
+            return organization;
+        }
+        [HttpDelete("{id:int}")] 
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            if (id <= 0)  
+            {
+                return BadRequest("Invalid ID supplied.");
+            }
+            try
+            {
+                var result = await _organizationService.DeleteOrganizationAsync(id);
+                if (result)
+                {
+                    return Ok($"Employee with ID {id} deleted successfully.");
+                }
+                else
+                {
+                    return NotFound($"Employee with ID {id} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message) ;
+            }
+        }
+
     }
 }
