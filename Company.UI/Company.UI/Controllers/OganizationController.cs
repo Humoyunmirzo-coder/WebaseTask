@@ -1,6 +1,7 @@
 ﻿using Aplication.Services;
 using Domen.EmtityDTO.EmployeeDto;
 using Domen.EmtityDTO.OrganizationDto;
+using Domen.EmtityDTO.UserDto;
 using Infrastructure.Repositories;
 using Infrastructure.Servises;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +40,30 @@ namespace Company.UI.Controllers
             var organization = await _organizationService.CreateOrganizationAsync(organizationCreateDto);
             return organization;
         }
+
+        [HttpPut]
+
+        public async Task<ActionResult<OrganizationGetDto>> UpdateOrganization([FromBody] OrganizationUpdateDto  organizationUpdate)
+        {
+            try
+            {
+                if (organizationUpdate == null)
+                {
+                    return BadRequest("organizationUpdate data must be provided.");
+                }
+                var updatedUser = await _organizationService.UpdateOrganizationAsync(organizationUpdate);
+                if (updatedUser == null)
+                {
+                    return NotFound($"Organization with ID {organizationUpdate.Id} not found.");
+                }
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
         [HttpDelete("{id:int}")] 
         public async Task<IActionResult> DeleteEmployee(int id)

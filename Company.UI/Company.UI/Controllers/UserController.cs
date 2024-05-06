@@ -38,7 +38,7 @@ namespace Company.UI.Controllers
             var user = await _userService.CreateUserAynce(userCreateDto);
             return user;
         }
-
+        [HttpPut]
 
         public async Task<ActionResult<UserGetDto>> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
         {

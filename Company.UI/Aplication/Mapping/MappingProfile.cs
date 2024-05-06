@@ -49,6 +49,7 @@ namespace Aplication.Mapping
             CreateMap<UserCreateDto, User>().ForMember(s => s.Createdat, s => s.MapFrom( s => DateTime.Now));
             CreateMap<UserCreateDto, User>().ForMember(s => s.Lastlogin, s => s.MapFrom( s => DateTime.Now));
             CreateMap<User, UserGetDto>();
+            CreateMap<UserUpdateDto, User>();
         }
     }
 
