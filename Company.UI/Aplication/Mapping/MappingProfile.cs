@@ -22,22 +22,27 @@ namespace Aplication.Mapping
             CreateMap<EmployeeCreateDto, Employee>()
                 .ForMember(dest => dest.Hiredate, opt => opt.MapFrom(src => DateOnly.FromDateTime(DateTime.Now)));
             CreateMap<Employee, EmployeeGetDto>();
+            CreateMap<EmployeeUpdateDto, Employee>();
 
             CreateMap<OrganizationCreateDto, Organization>();
             CreateMap<Organization, OrganizationGetDto>();
+            CreateMap<OrganizationUpdateDto, Organization>();
 
             CreateMap<RoleCreateDto, Role>();
             CreateMap<Role, RoleGetDto>();
+            CreateMap<RoleUpdateDto, Role >();
 
             CreateMap<TaskCreateDto, Task>()
                 .ForMember(des => des.Starttime, opt => opt.MapFrom(src => DateTime.Now))  ;
             CreateMap<Task, TaskGetDto>();
+            CreateMap<TaskUpdateDto, Task>();
 
 
 
             CreateMap<ProjectCreateDto, Project>()
                 .ForMember(des => des.Appointedday, opt => opt.MapFrom(src => DateOnly.FromDateTime(DateTime.Now)));
             CreateMap<Project, ProjectGetDto>();
+            CreateMap< ProjectUpdateDto, Project>();
 
             
        

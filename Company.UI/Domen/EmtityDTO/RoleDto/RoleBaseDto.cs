@@ -11,25 +11,10 @@ namespace Domen.EmtityDTO.RoleDto
 {
     public  class RoleBaseDto
     {
-        public int Id { get; set; }
-
-        [Column("full_name")]
-        [StringLength(255)]
+  
         public string FullName { get; set; } = null!;
-
-        [Column("description")]
-        public string? Description { get; set; }
-
-        [Column("created_at", TypeName = "timestamp without time zone")]
-        public DateTime CreatedAt { get; set; }
-
-        [Column("updated_at", TypeName = "timestamp without time zone")]
-        public DateTime UpdatedAt { get; set; }
-
         [Column("is_active")]
         public bool IsActive { get; set; }
 
-        [InverseProperty("Role")]
-        public virtual ICollection<Userrole> Userroles { get; set; } = new List<Userrole>();
     }
 }
