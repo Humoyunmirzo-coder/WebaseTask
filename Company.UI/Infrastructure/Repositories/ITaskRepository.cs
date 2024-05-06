@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public  interface ITaskRepository : IGenericRepository<TaskRepository>
+    public  interface ITaskRepository : IGenericRepository<Task>
     {
     }
 }

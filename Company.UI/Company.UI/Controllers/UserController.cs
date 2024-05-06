@@ -40,6 +40,27 @@ namespace Company.UI.Controllers
         }
 
 
+        public async Task<ActionResult<UserGetDto>> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
+        {
+            try
+            {
+                if (userUpdateDto == null)
+                {
+                    return BadRequest("User data must be provided.");
+                }
+                var updatedUser = await _userService.UpdateUserAynce(userUpdateDto);
+                if (updatedUser == null)
+                {
+                    return NotFound($"User with ID {userUpdateDto.Id} not found.");
+                }
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpDelete]
         public async Task<bool> DeleteUser(int Id)
         {

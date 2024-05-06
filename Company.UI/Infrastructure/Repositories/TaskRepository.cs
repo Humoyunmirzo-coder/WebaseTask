@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class TaskRepository : GenericRepository<TaskRepository>, ITaskRepository
+    public class TaskRepository : GenericRepository<Task>, ITaskRepository
     {
         public TaskRepository(ConpanyDbContext conpanyDbContext) : base(conpanyDbContext)
         {
