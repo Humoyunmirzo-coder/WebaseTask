@@ -1,5 +1,7 @@
 ﻿using Aplication.Services;
 using Domen.EmtityDTO.EmployeeDto;
+using Domen.EmtityDTO.UserDto;
+using Infrastructure.Servises;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +38,28 @@ public class EmployeeController : ControllerBase
         return employe;
     }
 
+
+    [HttpPut]
+    public async Task<ActionResult<EmployeeGetDto>> UpdateEmployee([FromBody] EmployeeUpdateDto  employeeUpdateDto)
+    {
+        try
+        {
+            if (employeeUpdateDto == null)
+            {
+                return BadRequest("Employee data must be provided.");
+            }
+            var updatedEmp = await _employeeService.UpdateEmployeeAsync(employeeUpdateDto);
+            if (updatedEmp == null)
+            {
+                return NotFound($"Employee with ID {employeeUpdateDto.Id} not found.");
+            }
+            return Ok(updatedEmp);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
 
     [HttpDelete]
     public async Task<bool> DeleteEmoployee(int Id)

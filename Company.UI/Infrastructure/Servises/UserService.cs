@@ -59,5 +59,7 @@ namespace Infrastructure.Servises
             await  _userRepository.UpdateAsync(user);
             return _mapper.Map<UserGetDto>(user );
         }
+
+
     }
 }

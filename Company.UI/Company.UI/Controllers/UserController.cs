@@ -39,7 +39,7 @@ namespace Company.UI.Controllers
             return user;
         }
 
-
+        [HttpPut]
         public async Task<ActionResult<UserGetDto>> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
         {
             try
