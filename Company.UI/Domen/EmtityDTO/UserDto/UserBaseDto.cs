@@ -5,8 +5,26 @@ namespace Domen.EmtityDTO.UserDto
 {
     public  class UserBaseDto 
     {
+        
+
+        [Column("fullname")]
+        [StringLength(255)]
+        public string Fullname { get; set; } = null!;
+
+        [Column("username")]
+        [StringLength(255)]
+        public string Username { get; set; } = null!;
+
+        [Column("email")]
+        [StringLength(255)]
+        public string Email { get; set; } = null!;
+
+        [Column("passwordhash")]
+        public string Passwordhash { get; set; } = null!;
 
 
+
+        [Column("isactive")]
         public bool Isactive { get; set; }
 
         [Column("phone")]

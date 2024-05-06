@@ -16,6 +16,5 @@ namespace Aplication.Services
         Task<bool> DeleteUserAynce(int Id);
         Task<UserGetDto> GetByIdUserAynce(int Id);
         Task<List<UserGetDto>> GetAllUserAynce();
-   
     }
 }
