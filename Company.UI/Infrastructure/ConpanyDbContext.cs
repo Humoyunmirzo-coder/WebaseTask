@@ -125,6 +125,24 @@ public partial class ConpanyDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("project_pkey");
 
+<<<<<<< HEAD
+=======
+            entity.ToTable("project");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Appointedday).HasColumnName("appointedday");
+            entity.Property(e => e.AssigneeId).HasColumnName("assignee_id");
+            entity.Property(e => e.ImportanceLevelId).HasColumnName("importance_level_id");
+            entity.Property(e => e.Organizationid).HasColumnName("organizationid");
+            entity.Property(e => e.Ownerid).HasColumnName("ownerid");
+            entity.Property(e => e.ProjectLevelId).HasColumnName("project_level_id");
+            entity.Property(e => e.ProjectTypeId).HasColumnName("project_type_id");
+
+            entity.HasOne(d => d.Assignee).WithMany(p => p.Projects)
+                .HasForeignKey(d => d.AssigneeId)
+                .HasConstraintName("project_assignee_id_fkey");
+
+>>>>>>> 4227baccbb05e27dec77de12949210e44b20fdff
             entity.HasOne(d => d.Organization).WithMany(p => p.Projects)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("project_organizationid_fkey");

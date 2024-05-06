@@ -39,28 +39,6 @@ namespace Company.UI.Controllers
         }
 
 
-        [HttpPut]
-        public async Task<ActionResult<ProjectGetDto>> UpdateProject([FromBody] ProjectUpdateDto  projectUpdateDto)
-        {
-            try
-            {
-                if (projectUpdateDto == null)
-                {
-                    return BadRequest("Project data must be provided.");
-                }
-                var updatedproject= await _projectService.UpdateProjectAsync(projectUpdateDto);
-                if (updatedproject == null)
-                {
-                    return NotFound($"Project with ID {projectUpdateDto.Id} not found.");
-                }
-                return Ok(updatedproject);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
         [HttpDelete]
         public async Task<bool> DeleteProject(int Id)
         {
