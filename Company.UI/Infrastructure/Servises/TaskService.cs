@@ -25,30 +25,33 @@ namespace Infrastructure.Servises
 
         public async Task<TaskGetDto> CreateTaskAynce(TaskCreateDto taskCreate)
         {
-            return null;
-          /*  var task = _mapper.Map<Task>(taskCreate);
+            var task = _mapper.Map<Task>(taskCreate);
             var taskEntity = await _taskRepository.CreateAsync(task);
-            return _mapper.Map<TaskGetDto>(taskEntity);*/
+            return _mapper.Map<TaskGetDto>(taskEntity);
         }
 
-        public Task<bool> DeleteTaskAynce(int Id)
+        public async Task<bool> DeleteTaskAynce(int Id)
         {
-            throw new NotImplementedException();
+           return await _taskRepository.DeleteAsync(Id);
         }
 
-        public Task<List<TaskGetDto>> GetAllTaskAynce()
+        public async Task<List<TaskGetDto>> GetAllTaskAynce()
         {
-            throw new NotImplementedException();
+           var task =await  _taskRepository.GetAllAsync();
+            return _mapper.Map<List<TaskGetDto>>(task);
         }
 
-        public Task<TaskGetDto> GetByIdTaskAynce(int Id)
+        public async Task<TaskGetDto> GetByIdTaskAynce(int Id)
         {
-            throw new NotImplementedException();
+            var  task = await _taskRepository.GetByIdAsync(Id);
+            return task != null ? _mapper.Map<TaskGetDto>(task) : null;
         }
 
-        public Task<TaskGetDto> UpdateTaskAynce(TaskUpdateDto task)
+        public async Task<TaskGetDto> UpdateTaskAynce(TaskUpdateDto  taskUpdate)
         {
-            throw new NotImplementedException();
+            var task = _mapper.Map<Task>(taskUpdate);
+            await _taskRepository.UpdateAsync(task);
+            return _mapper.Map<TaskGetDto> (task);
         }
     }
 }
