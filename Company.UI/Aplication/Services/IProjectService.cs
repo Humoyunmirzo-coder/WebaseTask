@@ -13,7 +13,7 @@ namespace Aplication.Services
         Task<ProjectGetDto> CreateProjectAsync(ProjectCreateDto project);
         Task<ProjectGetDto> UpdateProjectAsync(ProjectUpdateDto project);
         Task<bool> DeleteProjectAsync(int Id);
-        Task<Project> GetByIdProjectAsync(int Id);
-        Task<List<Project>> GetAllProjectAsync();
+        Task<ProjectGetDto> GetByIdProjectAsync(int Id);
+        Task<List<ProjectGetDto>> GetAllProjectAsync();
     }
 }

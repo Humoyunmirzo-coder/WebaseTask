@@ -36,7 +36,7 @@ namespace Aplication.Mapping
 
 
             CreateMap<ProjectCreateDto, Project>()
-                .ForMember(des => des.Appointedday, opt => opt.MapFrom(src => DateTime.Now));
+                .ForMember(des => des.Appointedday, opt => opt.MapFrom(src => DateOnly.FromDateTime(DateTime.Now)));
             CreateMap<Project, ProjectGetDto>();
 
             
