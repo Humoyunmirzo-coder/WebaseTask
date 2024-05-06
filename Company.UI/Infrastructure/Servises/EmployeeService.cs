@@ -5,6 +5,7 @@ using Domen.EmtityDTO.EmployeeDto;
 using Domen.Repositories;
 using Infrastructure.GenericRepository;
 using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,15 @@ namespace Infrastructure.Servises
 {
     public class EmployeeService : IEmployeeService
     {
-
+        private readonly ConpanyDbContext _conpanyDbContext;
         private readonly IEmployeeRepository _repository;
         private readonly IMapper _mapper;
 
-        public EmployeeService(IEmployeeRepository repository, IMapper mapper)
+        public EmployeeService(IEmployeeRepository repository, IMapper mapper, ConpanyDbContext conpanyDbContext)
         {
             _repository = repository;
             _mapper = mapper;
+            _conpanyDbContext = conpanyDbContext;
         }
         public async Task<EmployeeGetDto> CreateEmployeeAsync(EmployeeCreateDto employeeDto)
         {
@@ -33,7 +35,13 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteEmployeeAsync(int id)
         {
-            return await _repository.DeleteAsync(id);
+            Employee? entity = await _conpanyDbContext.Employees.FindAsync(id);
+            if (entity == null)
+                return false;
+
+            _conpanyDbContext.Remove(entity);
+            await _conpanyDbContext.SaveChangesAsync();
+            return true;
         }
 
       
