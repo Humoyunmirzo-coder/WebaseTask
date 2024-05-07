@@ -7,33 +7,10 @@ namespace Domen.EmtityDTO.UserDto
     {
         
 
-        [Column("fullname")]
-        [StringLength(255)]
-        public string Fullname { get; set; } = null!;
-
-        [Column("username")]
-        [StringLength(255)]
         public string Username { get; set; } = null!;
-
-        [Column("email")]
-        [StringLength(255)]
         public string Email { get; set; } = null!;
-
-        [Column("passwordhash")]
-        public string Passwordhash { get; set; } = null!;
-
-
-
-        [Column("isactive")]
         public bool Isactive { get; set; }
-
-        [Column("phone")]
-        [StringLength(255)]
         public string? Phone { get; set; }
-
-        [Column("address")]
-        [StringLength(255)]
-        public string? Address { get; set; }
 
        
 

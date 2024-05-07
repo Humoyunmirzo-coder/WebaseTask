@@ -11,7 +11,6 @@ namespace Domen.EmtityDTO.RoleDto
         public int Id { get; set; }
         public string FullName { get; set; } = null!;
         public string? Description { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+   
     }
 }
