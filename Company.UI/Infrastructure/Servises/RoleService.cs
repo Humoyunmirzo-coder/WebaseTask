@@ -14,13 +14,15 @@ namespace Infrastructure.Servises
 {
     public class RoleService : IRoleService
     {
+        private readonly ConpanyDbContext _conpanyDbContext;
         private readonly IRoleRepository _roleRepository;
         private readonly IMapper _mapper;
 
-        public RoleService(IRoleRepository roleRepository, IMapper mapper)
+        public RoleService(IRoleRepository roleRepository, IMapper mapper, ConpanyDbContext conpanyDbContext)
         {
             _roleRepository = roleRepository;
             _mapper = mapper;
+            _conpanyDbContext = conpanyDbContext;
         }
 
         public async Task<RoleGetDto> CreateRoleAsync(RoleCreateDto roleCreateDto)
@@ -32,7 +34,13 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteRoleAsync(int Id)
         {
-            return await _roleRepository.DeleteAsync(Id);
+            Role? entity = await _conpanyDbContext.Roles.FindAsync(Id);
+            if (entity == null)
+                return false;
+
+            _conpanyDbContext.Remove(entity);
+            await _conpanyDbContext.SaveChangesAsync();
+            return true ;
         }
 
         public async Task<List<RoleGetDto>> GetAllRoleAsync()

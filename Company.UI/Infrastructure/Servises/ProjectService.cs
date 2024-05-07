@@ -16,13 +16,15 @@ namespace Infrastructure.Servises
 
     public class ProjectService : IProjectService
     {
-         private readonly IProjectRepository _repository;
+        private readonly ConpanyDbContext _conpanyDbContext;
+        private readonly IProjectRepository _repository;
         private readonly IMapper _mapper;
 
-        public ProjectService(IProjectRepository repository, IMapper mapper)
+        public ProjectService(IProjectRepository repository, IMapper mapper, ConpanyDbContext conpanyDbContext)
         {
             _repository = repository;
             _mapper = mapper;
+            _conpanyDbContext = conpanyDbContext;
         }
         public async  Task<ProjectGetDto> CreateProjectAsync(ProjectCreateDto project)
         {
@@ -33,7 +35,13 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteProjectAsync(int Id)
         {
-            return await  _repository.DeleteAsync(Id);
+            Project? entity = await _conpanyDbContext.Projects.FindAsync(Id);
+            if (entity == null)
+                return false;
+
+            _conpanyDbContext.Remove(entity);
+            await _conpanyDbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<ProjectGetDto>> GetAllProjectAsync()

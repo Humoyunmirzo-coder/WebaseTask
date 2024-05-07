@@ -16,13 +16,15 @@ namespace Infrastructure.Servises
 {
     public class UserService : IUserService
     {
+        private readonly ConpanyDbContext _conpanyDbContext;
         private readonly IUserRepository _userRepository;
         private readonly IMapper  _mapper;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IMapper mapper, ConpanyDbContext conpanyDbContext)
         {
             _userRepository = userRepository;
             _mapper = mapper;
+            _conpanyDbContext = conpanyDbContext;
         }
 
 
@@ -38,7 +40,13 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteUserAynce(int Id)
         {
-            return await  _userRepository.DeleteAsync(Id);
+            User? entity = await _conpanyDbContext.Users.FindAsync(Id);
+            if (entity == null)
+                return false;
+
+            _conpanyDbContext.Remove(entity);
+            await _conpanyDbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<UserGetDto>> GetAllUserAynce()
@@ -53,11 +61,25 @@ namespace Infrastructure.Servises
             return user != null ? _mapper.Map<UserGetDto>(user) : null ;
         }
 
+
         public async Task<UserGetDto> UpdateUserAynce(UserUpdateDto userUpdate)
         {
-            var user = _mapper.Map<User>(userUpdate);
-            await  _userRepository.UpdateAsync(user);
-            return _mapper.Map<UserGetDto>(user );
+            var entity = await _userRepository.GetByIdAsync(userUpdate.Id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException("User not found.");
+            }
+            entity.Username = userUpdate.Username ?? entity.Username;
+            var hasher = new PasswordHasher<User>();
+            var result = hasher.VerifyHashedPassword(entity, entity.Passwordhash, userUpdate.Oldpassword);
+            if (result != PasswordVerificationResult.Success)
+            {
+                throw new ArgumentException("Invalid old password.", nameof(userUpdate.Oldpassword));
+            }
+            entity.Passwordhash = hasher.HashPassword(entity, userUpdate.Password);
+            await _userRepository.UpdateAsync(entity);
+            return _mapper.Map<UserGetDto>(entity);
         }
+
     }
 }

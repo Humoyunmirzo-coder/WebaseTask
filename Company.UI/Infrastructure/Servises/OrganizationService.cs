@@ -15,13 +15,15 @@ namespace Infrastructure.Servises
 {
     public class OrganizationService : IOrganizationService
     {
+        private readonly ConpanyDbContext _conpanyDbContext;
         private readonly IOrganizationRepasitory _organizationRepasitory;
         private readonly IMapper _mapper;
 
-        public OrganizationService(IOrganizationRepasitory organizationRepasitory, IMapper mapper)
+        public OrganizationService(IOrganizationRepasitory organizationRepasitory, IMapper mapper, ConpanyDbContext conpanyDbContext)
         {
             _organizationRepasitory = organizationRepasitory;
             _mapper = mapper;
+            _conpanyDbContext = conpanyDbContext;
         }
         public async Task<OrganizationGetDto> CreateOrganizationAsync(OrganizationCreateDto organization)
         {
@@ -33,7 +35,13 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteOrganizationAsync(int Id)
         {
-          return await _organizationRepasitory.DeleteAsync(Id);
+            Organization? entity = await _conpanyDbContext.Organizations.FindAsync(Id);
+            if (entity == null)
+                return false;
+
+            _conpanyDbContext.Remove(entity);
+            await _conpanyDbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<OrganizationGetDto>> GetAllOrganizationAsync()

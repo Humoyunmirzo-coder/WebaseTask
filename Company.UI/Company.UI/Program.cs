@@ -32,6 +32,10 @@ internal class Program
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IOrganizationService, OrganizationService>();
         builder.Services.AddScoped<IProjectService, ProjectService>();
+        builder.Services.AddScoped<IRoleService, RoleService>();
+        builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+        builder.Services.AddScoped<ITaskService, TaskService>();
+        builder.Services.AddScoped<ITaskRepository, TaskRepository>();
         builder.Services.AddScoped<IOrganizationRepasitory, OrganizationRepasitory>();
         builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
         builder.Services.AddControllers();

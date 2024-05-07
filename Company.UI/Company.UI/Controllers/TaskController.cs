@@ -54,7 +54,7 @@ namespace Company.UI.Controllers
                 var updatedUser = await _taskService.CreateTaskAynce(taskCreateDto);
                 if (updatedUser == null)
                 {
-                    return NotFound($"Task with ID {taskCreateDto.Id} not found.");
+                    return NotFound($"Task with ID {updatedUser.Id} not found.");
                 }
                 return Ok(updatedUser);
             }

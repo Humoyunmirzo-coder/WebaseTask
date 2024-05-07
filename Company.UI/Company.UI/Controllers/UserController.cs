@@ -38,8 +38,8 @@ namespace Company.UI.Controllers
             var user = await _userService.CreateUserAynce(userCreateDto);
             return user;
         }
-        [HttpPut]
 
+        [HttpPut]
         public async Task<ActionResult<UserGetDto>> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
         {
             try
@@ -60,6 +60,11 @@ namespace Company.UI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+
+
+
+
 
         [HttpDelete]
         public async Task<bool> DeleteUser(int Id)

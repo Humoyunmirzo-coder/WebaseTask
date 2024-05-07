@@ -15,12 +15,14 @@ namespace Infrastructure.Servises
 {
     public class TaskService : ITaskService
     {
+        private readonly ConpanyDbContext _conpanyDbContext;
         private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
-        public TaskService(ITaskRepository taskRepository, IMapper mapper)
+        public TaskService(ITaskRepository taskRepository, IMapper mapper, ConpanyDbContext conpanyDbContext)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+            _conpanyDbContext = conpanyDbContext;
         }
 
         public async Task<TaskGetDto> CreateTaskAynce(TaskCreateDto taskCreate)
@@ -32,7 +34,13 @@ namespace Infrastructure.Servises
 
         public async Task<bool> DeleteTaskAynce(int Id)
         {
-           return await _taskRepository.DeleteAsync(Id);
+            Task? entity = await _conpanyDbContext.Tasks.FindAsync(Id);
+            if (entity == null)
+                return false;
+
+            _conpanyDbContext.Remove(entity);
+            await _conpanyDbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<TaskGetDto>> GetAllTaskAynce()
