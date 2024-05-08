@@ -16,8 +16,6 @@ namespace Aplication.Services
         Task<UserGetDto> RegisterAsync(User user);
         Task< UserGetDto> LoginAsync(UserCreateDto userCreate);
         Task<bool> LogoutAsync();
-        Task<TokenDto> RefreshTokenAsync(Token token , int Id);
-        Task<bool> SaveRefreshToken(string refreshToken, User user);
         Task<bool> IsValidRefreshToken(string refreshToken, int userId);
     }
 }

@@ -13,6 +13,12 @@ namespace Infrastructure.Servises.TokenService
 {
     public class IdentityService : IIdentityServise
     {
+         private readonly IIdentityServise _identityServise;
+
+        public IdentityService(IIdentityServise identityServise)
+        {
+            _identityServise = identityServise;
+        }
 
         public Task<bool> IsValidRefreshToken(string refreshToken, int userId)
         {
