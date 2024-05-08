@@ -13,7 +13,7 @@ namespace Aplication.Services
 {
     public  interface IIdentityServise
     {
-        Task<UserGetDto> RegisterAsync(User user);
+        Task<TokenDto> RegisterAsync(User user);
         Task< UserGetDto> LoginAsync(UserCreateDto userCreate);
         Task<bool> LogoutAsync();
         Task<bool> IsValidRefreshToken(string refreshToken, int userId);
