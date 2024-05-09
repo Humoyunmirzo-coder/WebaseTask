@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domen.EmtityDTO.RoleDto;
+using Domen.EmtityDTO.Token;
+using Domen.Model;
 
 namespace Aplication.Mapping
 {
@@ -27,6 +29,9 @@ namespace Aplication.Mapping
             CreateMap<OrganizationCreateDto, Organization>();
             CreateMap<Organization, OrganizationGetDto>();
             CreateMap<OrganizationUpdateDto, Organization>();
+
+            CreateMap<TokenDto, Token>();
+            CreateMap<Token, TokenDto>();
 
             CreateMap<RoleCreateDto, Role>();
             CreateMap<Role, RoleGetDto>();
