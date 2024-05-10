@@ -25,6 +25,7 @@ internal class Program
 
         builder.Services.AddScoped<ConpanyDbContext>();
         builder.Services.AddDbContext<ConpanyDbContext>(options => options.UseNpgsql("Server=localhost;Database=ConpanyDB;Username=postgres;Password=2244;"));
+
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -38,6 +39,9 @@ internal class Program
         builder.Services.AddScoped<ITaskRepository, TaskRepository>();
         builder.Services.AddScoped<IOrganizationRepasitory, OrganizationRepasitory>();
         builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+        builder.Services.AddScoped<IReportService, ReportService>();    
+
+
         builder.Services.AddControllers();
         builder.Services.AddAutoMapper(typeof(MappingProfile));
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

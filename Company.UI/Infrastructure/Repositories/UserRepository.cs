@@ -28,18 +28,17 @@ namespace Infrastructure.Repositories
             var user = await _conpanyDbContext.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (user == null)
             {
-                return null; // User not found
+                return null; 
             }
 
-            // Verify the password by hashing the provided password and comparing it with the hashed password stored in the database
             var passwordHasher = new PasswordHasher<User>();
             var passwordVerificationResult = passwordHasher.VerifyHashedPassword(user, user.Passwordhash, password);
             if (passwordVerificationResult != PasswordVerificationResult.Success)
             {
-                return null; // Password incorrect
+                return null; 
             }
 
-            return user; // User found and password correct
+            return user;
         }
 
     }
