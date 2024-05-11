@@ -31,6 +31,10 @@ public partial class Project
     [Column("organizationid")]
     public int? Organizationid { get; set; }
 
+    [Column("name")]
+    [StringLength(255)]
+    public string? Name { get; set; }
+
     [InverseProperty("Project")]
     public virtual ICollection<Assignee> Assignees { get; set; } = new List<Assignee>();
 

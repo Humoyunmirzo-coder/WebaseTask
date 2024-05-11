@@ -8,8 +8,8 @@ namespace Domen.Model
 {
     public  class ProjectReport
     {
-        public int  ProjectLevel { get; set; }
-        public string EmployeName { get; set; }
-        public DateOnly CompletedDate { get; set; }
+        public string   Name { get; set; }
+        public List<int>  TaskIds { get; set; }
+        public DateOnly? Appointedday { get; set; }
     }
 }

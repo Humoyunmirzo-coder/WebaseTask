@@ -10,7 +10,7 @@ namespace Aplication.Services
     public interface IReportService
     {
        List<TaskReport> GetAllEmployeeReportAsync ();
-       Task <string> GetAllProjectReportAsync ();
-       Task <string> GetAllUserReportAsync ();
+       List <ProjectReport> GetAllProjectReportAsync ();
+
     }
 }

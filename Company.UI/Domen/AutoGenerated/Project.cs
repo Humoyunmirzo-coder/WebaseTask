@@ -12,6 +12,9 @@ public partial class Project
     [Key]
     [Column("id")]
     public int Id { get; set; }
+    [Column("name")]
+    [StringLength(255)]
+    public string? Name { get; set; }
 
     [Column("ownerid")]
     public int? Ownerid { get; set; }
@@ -26,7 +29,7 @@ public partial class Project
     public int? ImportanceLevelId { get; set; }
 
     [Column("appointedday")]
-    public DateOnly? Appointedday { get; set; }
+    public DateTime? Appointedday { get; set; }
 
     [Column("organizationid")]
     public int? Organizationid { get; set; }
