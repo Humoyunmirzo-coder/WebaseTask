@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;
 
-
 public partial class ConpanyDbContext : DbContext
 {
     public ConpanyDbContext()

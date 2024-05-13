@@ -17,6 +17,7 @@ public class EmployeeController : ControllerBase
     {
         _employeeService = employeeService;
     }
+
     [HttpGet]
     public async Task<IActionResult> GetAllEmployees()
     {
@@ -39,7 +40,6 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut]
-
     public async Task<ActionResult<EmployeeGetDto>> UpdateEmployee([FromBody] EmployeeUpdateDto  employeeUpdate)
     {
         try
