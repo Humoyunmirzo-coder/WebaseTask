@@ -24,20 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\EmployeeServices\Interface\" />
-    <Folder Include="Services\EmployeeServices\Service\" />
-    <Folder Include="Services\OrganizationServices\Interface\" />
-    <Folder Include="Services\OrganizationServices\Services\" />
-    <Folder Include="Services\ProjectServices\Interface\" />
-    <Folder Include="Services\ProjectServices\Services\" />
-    <Folder Include="Services\ReportServices\Interface\" />
-    <Folder Include="Services\ReportServices\Services\" />
-    <Folder Include="Services\RoleServices\Interface\" />
-    <Folder Include="Services\RoleServices\Services\" />
-    <Folder Include="Services\TaskServices\Interface\" />
-    <Folder Include="Services\TaskServices\Service\" />
-    <Folder Include="Services\UserServices\Interface\" />
-    <Folder Include="Services\UserServices\Service\" />
+    <Folder Include="Services\EmployeeServices\" />
+    <Folder Include="Services\OrganizationServices\" />
+    <Folder Include="Services\ProjectServices\" />
+    <Folder Include="Services\ReportServices\" />
+    <Folder Include="Services\RoleServices\" />
+    <Folder Include="Services\TaskServices\" />
+    <Folder Include="Services\UserServices\" />
   </ItemGroup>
 
 </Project>
