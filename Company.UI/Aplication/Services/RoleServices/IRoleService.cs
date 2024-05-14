@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.RoleServices
 {
-    public  interface IRoleService
+    public interface IRoleService
     {
         Task<RoleGetDto> CreateRoleAsync(RoleCreateDto role);
         Task<RoleGetDto> UpdateRoleAsync(RoleUpdateDto role);

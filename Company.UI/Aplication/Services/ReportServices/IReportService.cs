@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.ReportServices
 {
     public interface IReportService
     {
-       List<TaskReport> GetAllEmployeeReportAsync ();
-       List <ProjectReport> GetAllProjectReportAsync ();
+        List<TaskReport> GetAllEmployeeReportAsync();
+        List<ProjectReport> GetAllProjectReportAsync();
 
     }
 }

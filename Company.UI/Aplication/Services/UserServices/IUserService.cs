@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.UserServices
 {
     public  interface IUserService
     {

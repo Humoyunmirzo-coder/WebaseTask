@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.EmployeeServices
 {
-    public  interface IEmployeeService
+    public interface IEmployeeService
     {
         Task<EmployeeGetDto> CreateEmployeeAsync(EmployeeCreateDto employee);
         Task<EmployeeGetDto> UpdateEmployeeAsync(EmployeeUpdateDto employee);
@@ -16,7 +16,7 @@ namespace Aplication.Services
         Task<EmployeeGetDto> GetByIdEmployeeAsync(int id);
         Task<List<EmployeeGetDto>> GetAllEmployeesAsync();
 
-     
+
 
 
     }

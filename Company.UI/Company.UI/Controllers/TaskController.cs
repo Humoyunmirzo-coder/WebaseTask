@@ -1,4 +1,4 @@
-﻿using Aplication.Services;
+﻿using Aplication.Services.TaskServices;
 using AutoMapper;
 using Domen.EmtityDTO.TaskDto;
 using Domen.EmtityDTO.UserDto;

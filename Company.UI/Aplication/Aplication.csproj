@@ -23,14 +23,4 @@
     <ProjectReference Include="..\Domen\Domen.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\EmployeeServices\" />
-    <Folder Include="Services\OrganizationServices\" />
-    <Folder Include="Services\ProjectServices\" />
-    <Folder Include="Services\ReportServices\" />
-    <Folder Include="Services\RoleServices\" />
-    <Folder Include="Services\TaskServices\" />
-    <Folder Include="Services\UserServices\" />
-  </ItemGroup>
-
 </Project>

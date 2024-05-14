@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.ProjectServices
 {
-    public  interface IProjectService
+    public interface IProjectService
     {
         Task<ProjectGetDto> CreateProjectAsync(ProjectCreateDto project);
         Task<ProjectGetDto> UpdateProjectAsync(ProjectUpdateDto project);

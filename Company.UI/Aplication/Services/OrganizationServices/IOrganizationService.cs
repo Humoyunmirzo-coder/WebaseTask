@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.OrganizationServices
 {
-    public  interface IOrganizationService
+    public interface IOrganizationService
     {
 
         Task<OrganizationGetDto> CreateOrganizationAsync(OrganizationCreateDto organization);
         Task<OrganizationGetDto> UpdateOrganizationAsync(OrganizationUpdateDto organization);
         Task<bool> DeleteOrganizationAsync(int Id);
         Task<OrganizationGetDto> GetByIdOrganizationAsync(int Id);
-        Task<List<OrganizationGetDto>> GetAllOrganizationAsync  ();
+        Task<List<OrganizationGetDto>> GetAllOrganizationAsync();
 
     }
 }

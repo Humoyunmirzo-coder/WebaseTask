@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services
+namespace Aplication.Services.TaskServices
 {
-    public  interface ITaskService
+    public interface ITaskService
     {
 
         Task<TaskGetDto> CreateTaskAynce(TaskCreateDto task);

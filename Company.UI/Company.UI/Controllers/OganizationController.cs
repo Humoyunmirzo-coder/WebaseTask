@@ -1,4 +1,4 @@
-﻿using Aplication.Services;
+﻿using Aplication.Services.OrganizationServices;
 using Domen.EmtityDTO.EmployeeDto;
 using Domen.EmtityDTO.OrganizationDto;
 using Domen.EmtityDTO.UserDto;

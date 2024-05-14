@@ -1,4 +1,4 @@
-﻿using Aplication.Services;
+﻿using Aplication.Services.ReportServices;
 using Domen.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
