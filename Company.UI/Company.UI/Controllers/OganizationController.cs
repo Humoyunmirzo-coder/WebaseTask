@@ -1,10 +1,5 @@
 ﻿using Aplication.Services.OrganizationServices;
-using Domen.EmtityDTO.EmployeeDto;
 using Domen.EmtityDTO.OrganizationDto;
-using Domen.EmtityDTO.UserDto;
-using Infrastructure.Repositories;
-using Infrastructure.Servises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
@@ -21,8 +16,8 @@ namespace Company.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrganization() 
-        { 
+        public async Task<IActionResult> GetAllOrganization()
+        {
             List<OrganizationGetDto> organization = await _organizationService.GetAllOrganizationAsync();
             return Ok(organization);
         }
@@ -43,7 +38,7 @@ namespace Company.UI.Controllers
 
         [HttpPut]
 
-        public async Task<ActionResult<OrganizationGetDto>> UpdateOrganization([FromBody] OrganizationUpdateDto  organizationUpdate)
+        public async Task<ActionResult<OrganizationGetDto>> UpdateOrganization([FromBody] OrganizationUpdateDto organizationUpdate)
         {
             try
             {
@@ -65,10 +60,10 @@ namespace Company.UI.Controllers
         }
 
 
-        [HttpDelete("{id:int}")] 
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            if (id <= 0)  
+            if (id <= 0)
             {
                 return BadRequest("Invalid ID supplied.");
             }
@@ -86,7 +81,7 @@ namespace Company.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message) ;
+                return StatusCode(500, ex.Message);
             }
         }
 

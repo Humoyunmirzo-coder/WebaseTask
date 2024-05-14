@@ -1,8 +1,5 @@
 ﻿using Aplication.Services.EmployeeServices;
 using Domen.EmtityDTO.EmployeeDto;
-using Domen.EmtityDTO.UserDto;
-using Infrastructure.Servises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers;
@@ -40,7 +37,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<EmployeeGetDto>> UpdateEmployee([FromBody] EmployeeUpdateDto  employeeUpdate)
+    public async Task<ActionResult<EmployeeGetDto>> UpdateEmployee([FromBody] EmployeeUpdateDto employeeUpdate)
     {
         try
         {

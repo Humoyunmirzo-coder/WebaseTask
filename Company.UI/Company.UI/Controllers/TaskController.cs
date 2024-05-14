@@ -1,9 +1,6 @@
 ﻿using Aplication.Services.TaskServices;
 using AutoMapper;
 using Domen.EmtityDTO.TaskDto;
-using Domen.EmtityDTO.UserDto;
-using Infrastructure.Servises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
@@ -36,14 +33,14 @@ namespace Company.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<TaskGetDto> CreateTask(TaskCreateDto  taskCreateDto)
+        public async Task<TaskGetDto> CreateTask(TaskCreateDto taskCreateDto)
         {
-            var task = await  _taskService.CreateTaskAynce(taskCreateDto);
-            return task ;
+            var task = await _taskService.CreateTaskAynce(taskCreateDto);
+            return task;
         }
 
         [HttpPut]
-        public async Task<ActionResult<TaskGetDto>> UpdateTask([FromBody] TaskCreateDto  taskCreateDto)
+        public async Task<ActionResult<TaskGetDto>> UpdateTask([FromBody] TaskCreateDto taskCreateDto)
         {
             try
             {

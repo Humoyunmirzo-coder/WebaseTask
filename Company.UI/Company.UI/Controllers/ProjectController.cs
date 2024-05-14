@@ -1,8 +1,5 @@
 ﻿using Aplication.Services.ProjectServices;
 using Domen.EmtityDTO.ProjectDto;
-using Domen.EmtityDTO.UserDto;
-using Infrastructure.Servises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
@@ -32,7 +29,7 @@ namespace Company.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<ProjectGetDto> CreateProject(ProjectCreateDto  projectGetDto)
+        public async Task<ProjectGetDto> CreateProject(ProjectCreateDto projectGetDto)
         {
             var project = await _projectService.CreateProjectAsync(projectGetDto);
             return project;
@@ -40,7 +37,7 @@ namespace Company.UI.Controllers
 
         [HttpPut]
 
-        public async Task<ActionResult<ProjectGetDto>> UpdateProject([FromBody] ProjectUpdateDto  projectUpdateDto)
+        public async Task<ActionResult<ProjectGetDto>> UpdateProject([FromBody] ProjectUpdateDto projectUpdateDto)
         {
             try
             {

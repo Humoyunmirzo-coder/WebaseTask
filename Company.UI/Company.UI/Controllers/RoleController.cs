@@ -1,10 +1,6 @@
 ﻿using Aplication.Services.RoleServices;
 using AutoMapper;
 using Domen.EmtityDTO.RoleDto;
-using Domen.EmtityDTO.TaskDto;
-using Infrastructure.Repositories;
-using Infrastructure.Servises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
@@ -37,14 +33,14 @@ namespace Company.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<RoleGetDto> CreateRole(RoleCreateDto  roleCreateDto)
+        public async Task<RoleGetDto> CreateRole(RoleCreateDto roleCreateDto)
         {
             var task = await _roleService.CreateRoleAsync(roleCreateDto);
             return task;
         }
 
         [HttpPut]
-        public async Task<ActionResult<RoleGetDto>> UpdateRole([FromBody] RoleUpdateDto  roleUpdateDto)
+        public async Task<ActionResult<RoleGetDto>> UpdateRole([FromBody] RoleUpdateDto roleUpdateDto)
         {
             try
             {

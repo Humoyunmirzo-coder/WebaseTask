@@ -10,8 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Aplication.Services.TaskServices;
+using Infrastructure;
 
-namespace Infrastructure.Servises
+namespace Aplication.Servises
 {
     public class TaskService : ITaskService
     {

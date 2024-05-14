@@ -1,8 +1,5 @@
-﻿using Aplication.Services;
-using Domen.EmtityDTO.EmployeeDto;
+﻿using Aplication.Services.UserServices;
 using Domen.EmtityDTO.UserDto;
-using Infrastructure.Servises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
@@ -21,7 +18,7 @@ namespace Company.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            List<UserGetDto> user = await  _userService.GetAllUserAynce();
+            List<UserGetDto> user = await _userService.GetAllUserAynce();
             return Ok(user);
         }
 
