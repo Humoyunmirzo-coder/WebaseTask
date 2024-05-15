@@ -1,5 +1,6 @@
 ﻿using Aplication.Services;
 using Aplication.Services.UserServices;
+using Aplication.Servises;
 using Domen.EmtityDTO.Token;
 using Domen.EmtityDTO.UserDto;
 using Infrastructure;
@@ -15,57 +16,54 @@ namespace Company.UI.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]
-    [AutoValidateAntiforgeryToken]
-    [Authorize]
+   
 
     public class AuthController : ControllerBase
 
     {
+        private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
         private readonly IUserRepository _userRepository;
         private readonly ConpanyDbContext _conpanyDbContext;
 
 
 
-        public AuthController(IUserRepository userRepository, ConpanyDbContext conpanyDbContext, IUserService userService)
+        public AuthController(IUserRepository userRepository, ConpanyDbContext conpanyDbContext, IUserService userService, ITokenService tokenService)
         {
             _userRepository = userRepository;
             _conpanyDbContext = conpanyDbContext;
             _userService = userService;
+            _tokenService = tokenService;
         }
 
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync(UserCreateDto user)
+        public async Task<IActionResult> Register([FromBody] UserCreateDto createUser)
         {
-            // Check if the user already exists
-            var existingUser = await _userRepository.GetByUserNameAynce(user.Username);
-            if (existingUser != null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("User already exists");
+                return BadRequest("Notori nimadir boldi");
             }
 
-            // Register the user
-            await _userService.CreateUserAynce(user);
+            var user = await _userService.RegisterAsync(createUser);
 
-            // Generate JWT token for the registered user
-            var token = GenerateJwtToken(user.Username);
-            return Ok(new TokenDto { AccessToken = token });
+            return Ok();
         }
 
 
-
-        [HttpGet("secure")]
-        [Authorize]
-        public IActionResult Secure()
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginUserModel)
         {
-            return Ok("Access granted to secure endpoint");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Notori nimadir boldi");
+            }
+
+            return Ok(new { Token = await _userService.LoginAsync(loginUserModel) });
         }
 
 
-
-
-        [HttpPost]
+    /*    [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
             // Here, validate the username and password against your user data  
@@ -76,28 +74,12 @@ namespace Company.UI.Controllers
             }
 
             // User authentication succeeded, generate JWT token
-            var token = GenerateJwtToken(username);
+            var token = _tokenService.GenerateJwtToken(username);
             return Ok(new { token });
 
-        }
+        }*/
 
-        private string GenerateJwtToken(string username)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("KeY1122");
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                new Claim(ClaimTypes.Name, username)
-                }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
-
+    
         [HttpGet("secureUser")]
         [Authorize]
         public IActionResult SecureUser()

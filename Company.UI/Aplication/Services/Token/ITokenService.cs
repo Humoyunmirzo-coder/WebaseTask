@@ -5,15 +5,15 @@ using System.Linq;
 using Domen.Model;
 using System.Threading.Tasks;
 using Nest;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Aplication.Services
 {
     public  interface ITokenService
     {
-
-        Task<AuthenticateResponse?> Authenticate(AuthenticateRequest model);
-        Task<IEnumerable<User>> GetAll();
-        Task<User?> GetById(int id);
-        Task<User?> AddAndUpdateUser(User userObj);
+       public string GenerateJwtToken(User user);
     }
 }

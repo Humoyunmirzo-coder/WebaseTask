@@ -1,11 +1,13 @@
 ﻿using Aplication.Services.EmployeeServices;
 using Domen.EmtityDTO.EmployeeDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers;
 
 [Route("[controller]/[action]")]
 [ApiController]
+[Authorize]
 public class EmployeeController : ControllerBase
 {
     private readonly IEmployeeService _employeeService;
@@ -16,6 +18,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAllEmployees()
     {
         List<EmployeeGetDto> employees = await _employeeService.GetAllEmployeesAsync();
