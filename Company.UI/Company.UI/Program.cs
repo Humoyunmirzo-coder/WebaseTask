@@ -1,5 +1,5 @@
 using Aplication.Mapping;
-using Aplication.Extansiions;
+using Company.UI.Extensions;
 using Aplication.Services.EmployeeServices;
 using Aplication.Services.OrganizationServices;
 using Aplication.Services.ProjectServices;
@@ -12,7 +12,6 @@ using Domen.Repositories;
 using Infrastructure;
 using Infrastructure.GenericRepository;
 using Infrastructure.Repositories;
-using Aplication.Servises;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +27,6 @@ internal class Program
 
         // Add services to the container.                                      
 
-        //builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 
         builder.Services.AddScoped<ConpanyDbContext>();
@@ -52,37 +50,9 @@ internal class Program
 
        
         builder.Services.AddAutoMapper(typeof(MappingProfile));
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer(); 
-        
-        builder.Services.AddSwaggerGen(c =>
-        {
-            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-            {
-                Description = "JWT Bearer. : \"Authorization: Bearer { token }\"",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.ApiKey
-            });
+        builder.Services.AddEndpointsApiExplorer();
 
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            new string[]{}
-        }
-    });
-        });
-
-        builder.Services.AddIdentity(builder.Configuration);
-
+        builder.Services.AddIdentityService(builder.Configuration);
 
 
         builder.Services.AddControllers();
@@ -105,10 +75,10 @@ internal class Program
         }
 
 
-
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
+
         app.UseAuthorization();
 
         app.MapControllers();

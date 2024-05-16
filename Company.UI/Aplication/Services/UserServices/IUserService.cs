@@ -18,7 +18,6 @@ namespace Aplication.Services.UserServices
 
         Task<string> LoginAsync(LoginDto loginUserModel);
         Task<UserGetDto> CreateUserAynce(UserCreateDto user);
-        string GenerateJwtToken(string userName);
         Task<UserGetDto> UpdateUserAynce(UserUpdateDto user);
         Task<bool> DeleteUserAynce(int Id);
         Task<UserGetDto> GetByIdUserAynce(int Id);
