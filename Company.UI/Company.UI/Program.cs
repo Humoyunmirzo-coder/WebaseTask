@@ -65,8 +65,6 @@ internal class Program
                 Type = SecuritySchemeType.ApiKey
             });
 
-
-
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {

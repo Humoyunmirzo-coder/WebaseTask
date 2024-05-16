@@ -116,8 +116,6 @@ namespace Aplication.Servises
             return true;
         }
 
-
-
         public string GenerateJwtToken(string userName)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
