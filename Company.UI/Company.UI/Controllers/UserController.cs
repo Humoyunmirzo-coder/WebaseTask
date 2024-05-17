@@ -25,16 +25,52 @@ namespace Company.UI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdUser(int id)
         {
-            var user = await _userService.GetByIdUserAynce(id);
-            return Ok(user);
+            if (id <= 0)
+            {
+                return BadRequest("Invalid user ID.");
+            }
+
+            try
+            {
+                var user = await _userService.GetByIdUserAynce(id);
+
+                if (user == null)
+                {
+                    return NotFound($"User with ID {id} not found.");
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public async Task<UserGetDto> CreateUser(UserCreateDto userCreateDto)
+        public async Task<IActionResult> CreateUser([FromBody] UserCreateDto userCreateDto)
         {
-            var user = await _userService.CreateUserAynce(userCreateDto);
-            return user;
+            if (userCreateDto == null)
+            {
+                return BadRequest("User data must be provided.");
+            }
+
+            try
+            {
+                var createdUser = await _userService.CreateUserAynce(userCreateDto);
+                if (createdUser == null)
+                {
+                    return StatusCode(500, "Failed to create the user.");
+                }
+
+                return CreatedAtAction(nameof(GetByIdUser), new { id = createdUser.Id }, createdUser);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
         [HttpPut]
         public async Task<ActionResult<UserGetDto>> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
@@ -58,21 +94,31 @@ namespace Company.UI.Controllers
             }
         }
 
-
-
-
-
-
-        [HttpDelete]
-        public async Task<bool> DeleteUser(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            if (Id != 0)
+            if (id == 0)
             {
-                return await _userService.DeleteUserAynce(Id);
+                return BadRequest("Invalid ID. ID must be greater than 0.");
             }
-            return false;
 
+            try
+            {
+                var result = await _userService.DeleteUserAynce(id);
+                if (!result)
+                {
+                    return NotFound($"User with ID {id} not found.");
+                }
+
+                return Ok($"User with ID {id} has been successfully deleted.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while deleting the user: {ex.Message}");
+            }
         }
+
+
 
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
 {
-    [Route("api/[controller] /[action]")]
+    [Route("[controller] /[action]")]
     [ApiController]
     public class RoleController : ControllerBase
     {
@@ -24,20 +24,54 @@ namespace Company.UI.Controllers
             List<RoleGetDto> task = await _roleService.GetAllRoleAsync();
             return Ok(task);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdRole(int id)
         {
-            var role = await _roleService.GetByIdRoleAsync(id);
-            return Ok(role);
+            if (id <= 0)
+            {
+                return BadRequest("Invalid role ID.");
+            }
+            try
+            {
+                var role = await _roleService.GetByIdRoleAsync(id);
+
+                if (role == null)
+                {
+                    return NotFound($"Role with ID {id} not found.");
+                }
+                return Ok(role);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public async Task<RoleGetDto> CreateRole(RoleCreateDto roleCreateDto)
+        public async Task<IActionResult> CreateRole([FromBody] RoleCreateDto roleCreateDto)
         {
-            var task = await _roleService.CreateRoleAsync(roleCreateDto);
-            return task;
+            if (roleCreateDto == null)
+            {
+                return BadRequest("Role data must be provided.");
+            }
+
+            try
+            {
+                var role = await _roleService.CreateRoleAsync(roleCreateDto);
+
+                if (role == null)
+                {
+                    return StatusCode(500, "An error occurred while creating the role.");
+                }
+
+                return CreatedAtAction(nameof(GetByIdRole), new { id = role.Id }, role);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
         [HttpPut]
         public async Task<ActionResult<RoleGetDto>> UpdateRole([FromBody] RoleUpdateDto roleUpdateDto)
@@ -61,16 +95,38 @@ namespace Company.UI.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<bool> DeleteRoler(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRoler(int id)
         {
-            if (Id != 0)
+            if (id <= 0)
             {
-                return await _roleService.DeleteRoleAsync(Id);
+                return BadRequest("Invalid role ID.");
             }
-            return false;
 
+            try
+            {
+                var roleExists = await _roleService.GetByIdRoleAsync(id);
+                if (roleExists == null)
+                {
+                    return NotFound($"Role with ID {id} not found.");
+                }
+
+                var result = await _roleService.DeleteRoleAsync(id);
+                if (result)
+                {
+                    return NoContent(); // Successful deletion, 204 No Content
+                }
+                else
+                {
+                    return StatusCode(500, "An error occurred while deleting the role.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
 
     }

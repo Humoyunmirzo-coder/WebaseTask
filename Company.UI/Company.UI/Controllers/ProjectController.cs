@@ -20,13 +20,29 @@ namespace Company.UI.Controllers
             List<ProjectGetDto> project = await _projectService.GetAllProjectAsync();
             return Ok(project);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdProject(int id)
         {
-            var project = await _projectService.GetByIdProjectAsync(id);
-            return Ok(project);
+            if (id <= 0)
+            {
+                return BadRequest("Invalid project ID.");
+            }
+            try
+            {
+                var project = await _projectService.GetByIdProjectAsync(id);
+
+                if (project == null)
+                {
+                    return NotFound($"Project with ID {id} not found.");
+                }
+                return Ok(project);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
         [HttpPost]
         public async Task<ProjectGetDto> CreateProject(ProjectCreateDto projectGetDto)
@@ -60,15 +76,37 @@ namespace Company.UI.Controllers
 
 
 
-        [HttpDelete]
-        public async Task<bool> DeleteProject(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProject(int id)
         {
-            if (Id != 0)
+            if (id <= 0)
             {
-                return await _projectService.DeleteProjectAsync(Id);
+                return BadRequest("Invalid project ID.");
             }
-            return false;
 
+            try
+            {
+                var projectExists = await _projectService.GetByIdProjectAsync(id);
+                if (projectExists == null)
+                {
+                    return NotFound($"Project with ID {id} not found.");
+                }
+
+                var result = await _projectService.DeleteProjectAsync(id);
+                if (result)
+                {
+                    return NoContent(); // Successful deletion, 204 No Content
+                }
+                else
+                {
+                    return StatusCode(500, "An error occurred while deleting the project.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
     }
 }

@@ -28,16 +28,50 @@ namespace Company.UI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdTask(int id)
         {
-            var task = await _taskService.GetByIdTaskAynce(id);
-            return Ok(task);
+            if (id <= 0)
+            {
+                return BadRequest("Invalid task ID.");
+            }
+            try
+            {
+                var task = await _taskService.GetByIdTaskAynce(id);
+
+                if (task == null)
+                {
+                    return NotFound($"Task with ID {id} not found.");
+                }
+
+                return Ok(task);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
+
         [HttpPost]
-        public async Task<TaskGetDto> CreateTask(TaskCreateDto taskCreateDto)
+        public async Task<IActionResult> CreateTask([FromBody] TaskCreateDto taskCreateDto)
         {
-            var task = await _taskService.CreateTaskAynce(taskCreateDto);
-            return task;
+            if (taskCreateDto == null)
+            {
+                return BadRequest("Task data must be provided.");
+            }
+            try
+            {
+                var task = await _taskService.CreateTaskAynce(taskCreateDto);
+                if (task == null)
+                {
+                    return StatusCode(500, "An error occurred while creating the task.");
+                }
+                return CreatedAtAction(nameof(GetByIdTask), new { id = task.Id }, task);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
         [HttpPut]
         public async Task<ActionResult<TaskGetDto>> UpdateTask([FromBody] TaskCreateDto taskCreateDto)
@@ -61,16 +95,38 @@ namespace Company.UI.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<bool> DeleteUser(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTask(int id)
         {
-            if (Id != 0)
+            if (id <= 0)
             {
-                return await _taskService.DeleteTaskAynce(Id);
+                return BadRequest("Invalid user ID.");
             }
-            return false;
 
+            try
+            {
+                var userExists = await _taskService.GetByIdTaskAynce(id);
+                if (userExists == null)
+                {
+                    return NotFound($"User with ID {id} not found.");
+                }
+
+                var result = await _taskService.DeleteTaskAynce(id);
+                if (result)
+                {
+                    return NoContent(); 
+                }
+                else
+                {
+                    return StatusCode(500, "An error occurred while deleting the user.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
     }
 }

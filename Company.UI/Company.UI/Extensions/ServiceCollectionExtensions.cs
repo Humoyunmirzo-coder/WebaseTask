@@ -45,7 +45,13 @@ public static class ServiceCollectionExtensions
     {
         services.Configure<JwtOption>(configuration.GetSection("JwtBearer"));
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+        services.AddSingleton(_ => new SymmetricSecurityKey(Encoding.UTF32.GetBytes(configuration["JwtBearer:SigningKey"])));
+        
+        services.AddAuthentication(opt =>
+        {
+            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
         {
             var signingKey = Encoding.UTF32.GetBytes(configuration["JwtBearer:SigningKey"]!);
             
@@ -55,7 +61,7 @@ public static class ServiceCollectionExtensions
                 ValidAudience = configuration["JwtBearer:ValidAudience"],
                 ValidateIssuer = true,
                 ValidateAudience = true,
-                IssuerSigningKey = new SymmetricSecurityKey(signingKey),
+                IssuerSigningKey = services.BuildServiceProvider().GetRequiredService<SymmetricSecurityKey>(),
                 ValidateIssuerSigningKey = true,
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.Zero
