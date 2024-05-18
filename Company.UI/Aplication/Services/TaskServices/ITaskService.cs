@@ -1,9 +1,11 @@
-﻿using Domen.EmtityDTO.TaskDto;
+﻿using Domen.EmtityDTO.RoleDto;
+using Domen.EmtityDTO.TaskDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task = System.Threading.Tasks.Task;
 
 namespace Aplication.Services.TaskServices
 {
@@ -15,5 +17,6 @@ namespace Aplication.Services.TaskServices
         Task<bool> DeleteTaskAynce(int Id);
         Task<TaskGetDto> GetByIdTaskAynce(int Id);
         Task<List<TaskGetDto>> GetAllTaskAynce();
+      
     }
 }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task = System.Threading.Tasks.Task;
+
 
 namespace Aplication.Services.EmployeeServices
 {
@@ -15,6 +17,8 @@ namespace Aplication.Services.EmployeeServices
         Task<bool> DeleteEmployeeAsync(int id);
         Task<EmployeeGetDto> GetByIdEmployeeAsync(int id);
         Task<List<EmployeeGetDto>> GetAllEmployeesAsync();
+        Task EmployeeCreateExcelFileAsync(List<EmployeeGetDto> persons);
+
 
 
 

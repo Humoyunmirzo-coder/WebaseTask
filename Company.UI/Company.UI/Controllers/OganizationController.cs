@@ -119,6 +119,16 @@ namespace Company.UI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpGet("export")]
+        public async Task<IActionResult> AllOrganizationExportToExcel()
+        {
+            var persons = await _organizationService.GetAllOrganizationAsync();
+            await _organizationService.OrganizationCreateExcelFileAsync(persons);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "D:\\hp.xlsx");
+
+            byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "D:\\hp.xlsx");
+        }
 
     }
 }

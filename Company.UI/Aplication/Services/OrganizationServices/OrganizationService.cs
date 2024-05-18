@@ -6,7 +6,9 @@ using Domen.EmtityDTO.OrganizationDto;
 using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using System;
+using Task = System.Threading.Tasks.Task;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +46,35 @@ namespace Aplication.Servises
             await _conpanyDbContext.SaveChangesAsync();
             return true;
         }
+
+        public async Task OrganizationCreateExcelFileAsync(List<OrganizationGetDto> persons)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                // Sarlavhalarni yozish
+                worksheet.Cells[1, 1].Value = "ID";
+                worksheet.Cells[1, 2].Value = "Name";
+                worksheet.Cells[1, 3].Value = "PhoneNumber";
+                worksheet.Cells[1, 4].Value = "Address";
+
+                // Ma'lumotlarni yozish
+                for (int i = 0; i < persons.Count; i++)
+                {
+                    worksheet.Cells[i + 2, 1].Value = persons[i].Id;
+                    worksheet.Cells[i + 2, 2].Value = persons[i].Name;
+                    worksheet.Cells[i + 2, 3].Value = persons[i].PhoneNumber;
+                    worksheet.Cells[i + 2, 4].Value = persons[i].Address;
+                }
+
+                // Excel faylini saqlash
+                var fileInfo = new FileInfo("D:\\hp.xlsx");
+                await package.SaveAsAsync(fileInfo);
+            }
+        }
+
 
         public async Task<List<OrganizationGetDto>> GetAllOrganizationAsync()
         {

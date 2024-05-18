@@ -126,6 +126,16 @@ namespace Company.UI.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+        [HttpGet("export")]
+        public async Task<IActionResult> AllRoleExportToExcel()
+        {
+            var persons = await _roleService.GetAllRoleAsync();
+            await _roleService.RoleCreateExcelFileAsync(persons);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "D:\\hp.xlsx");
+
+            byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "D:\\hp.xlsx");
+        }
 
 
 

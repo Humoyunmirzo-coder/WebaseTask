@@ -108,5 +108,15 @@ namespace Company.UI.Controllers
             }
         }
 
+        [HttpGet("export")]
+        public async Task<IActionResult> AllProjectExportToExcel()
+        {
+            var persons = await _projectService.GetAllProjectAsync();
+            await _projectService.ProjectCreateExcelFileAsync(persons);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "D:\\hp.xlsx");
+
+            byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "D:\\hp.xlsx");
+        }
     }
 }

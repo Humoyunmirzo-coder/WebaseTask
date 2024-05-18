@@ -103,6 +103,16 @@ public class EmployeeController : ControllerBase
             return StatusCode(500, "Internal Server Error"); 
         }
     }
+    [HttpGet("export")]
+    public async Task<IActionResult> AllEmpoyeeExportToExcel()
+    {
+        var persons = await _employeeService.GetAllEmployeesAsync();
+        await _employeeService.EmployeeCreateExcelFileAsync(persons);
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "D:\\hp.xlsx");
+
+        byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+        return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "D:\\hp.xlsx");
+    }
 
 
 

@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Aplication.Services.Excel;
 
 
 internal class Program
@@ -43,8 +44,10 @@ internal class Program
         builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
         builder.Services.AddScoped<IReportService, ReportService>();    
 
+        builder.Services.AddHttpClient<IPersonService, PersonService>();
 
-       
+
+
         builder.Services.AddAutoMapper(typeof(MappingProfile));
         builder.Services.AddEndpointsApiExplorer();
 
