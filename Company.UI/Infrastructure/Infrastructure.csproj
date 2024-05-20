@@ -24,4 +24,13 @@
     <ProjectReference Include="..\Domen\Domen.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Employees\" />
+    <Folder Include="Repositories\Roles\" />
+    <Folder Include="Repositories\Users\" />
+    <Folder Include="Repositories\Tasks\" />
+    <Folder Include="Repositories\Projects\" />
+    <Folder Include="Repositories\Organizations\" />
+  </ItemGroup>
+
 </Project>
