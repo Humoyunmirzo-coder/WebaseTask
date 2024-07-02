@@ -33,6 +33,7 @@ public static class ServiceCollectionExtensions
                         {
                             Type = ReferenceType.SecurityScheme,
                             Id = "Bearer"
+
                         }
                     },
                     new List<string>(){}
@@ -42,6 +43,7 @@ public static class ServiceCollectionExtensions
     }
 
     public static void AddJwt(this IServiceCollection services, IConfiguration configuration)
+
     {
         services.Configure<JwtOption>(configuration.GetSection("JwtBearer"));
 
@@ -53,6 +55,7 @@ public static class ServiceCollectionExtensions
             opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(options =>
         {
+
             var signingKey = Encoding.UTF32.GetBytes(configuration["JwtBearer:SigningKey"]!);
             
             options.TokenValidationParameters = new TokenValidationParameters()
