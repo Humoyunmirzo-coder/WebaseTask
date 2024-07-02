@@ -95,7 +95,7 @@ namespace Company.UI.Controllers
                 var result = await _projectService.DeleteProjectAsync(id);
                 if (result)
                 {
-                    return NoContent(); // Successful deletion, 204 No Content
+                    return NoContent();    // Successful deletion, 204 No Content
                 }
                 else
                 {
