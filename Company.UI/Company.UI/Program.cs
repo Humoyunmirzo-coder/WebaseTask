@@ -17,7 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using Aplication.Services.Excel;
-using Infrastructure.Repositories.Employee;
+using Infrastructure.Repositories;
 
 
 internal class Program
