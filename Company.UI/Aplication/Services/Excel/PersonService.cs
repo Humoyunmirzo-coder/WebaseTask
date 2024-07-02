@@ -25,7 +25,7 @@ namespace Aplication.Services.Excel
 
 
 
-       /* public async Task EmployeeCreateExcelFileAsync(List<EmployeeGetDto> persons)
+        public async Task EmployeeCreateExcelFileAsync(List<EmployeeGetDto> persons)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var package = new ExcelPackage())
@@ -51,6 +51,6 @@ namespace Aplication.Services.Excel
                 var fileInfo = new FileInfo("D:\\hp.xlsx");
                 await package.SaveAsAsync(fileInfo);
             }
-        }*/
+        }
     }
 }
