@@ -3,6 +3,9 @@ namespace Company.UI.Logging
 {
     public class EntityLogger : ILogger
     {
+        private readonly ILogger _logger;
+
+
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull
         {
             throw new NotImplementedException();
@@ -17,5 +20,19 @@ namespace Company.UI.Logging
         {
             throw new NotImplementedException();
         }
+
+        // xatolik bor 
+        //public async Task<T> GetAsync<T>(string id)
+        //{
+        //    _logger.LogInformation(AppLogEvents.Read, "Reading value for {Id}", id);
+
+        //    var result = await _repository.GetAsync(id);
+        //    if (result is null)
+        //    {
+        //        _logger.LogWarning(AppLogEvents.ReadNotFound, "GetAsync({Id}) not found", id);
+        //    }
+
+        //    return result;
+        //}
     }
 }
