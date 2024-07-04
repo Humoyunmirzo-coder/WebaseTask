@@ -5,7 +5,6 @@ using Domen.EmtityDTO.EmployeeDto;
 using Task = System.Threading.Tasks.Task;
 using Infrastructure;
 using Infrastructure.GenericRepository;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OfficeOpenXml;
+using Infrastructure.Repositories.Emloyee;
 
 namespace Aplication.Services.EmployeeServices
 {

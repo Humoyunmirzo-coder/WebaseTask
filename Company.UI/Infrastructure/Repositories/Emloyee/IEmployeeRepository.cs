@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Repositories;
+namespace Infrastructure.Repositories.Emloyee;
 
 public interface IEmployeeRepository : IGenericRepository<Employee>
 {
