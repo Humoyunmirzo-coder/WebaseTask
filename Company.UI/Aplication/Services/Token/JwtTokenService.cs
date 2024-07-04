@@ -30,6 +30,7 @@ namespace Aplication.Services.Token
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username)
+
             };
 
             var signingKey = Encoding.UTF32.GetBytes(_jwtOptions.SigningKey);
