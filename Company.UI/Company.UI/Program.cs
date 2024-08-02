@@ -27,7 +27,8 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddScoped<ConpanyDbContext>();
-        builder.Services.AddDbContext<ConpanyDbContext>(options => options.UseNpgsql("Server=localhost;Database=ConpanyDB;Username=postgres;Password=2244;"));
+        builder.Services.AddDbContext<ConpanyDbContext>(
+                    options => options.UseNpgsql(builder.Configuration.GetConnectionString("DBConnection")));
 
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
