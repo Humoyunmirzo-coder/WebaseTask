@@ -8,7 +8,7 @@ namespace Company.UI.Controllers
 {
    
     [ApiController]
-    [Route("[controller] / [action]")]
+    [Route("api / [action]")]
     public class OganizationController : ControllerBase
     {
         private readonly IOrganizationService _organizationService;
