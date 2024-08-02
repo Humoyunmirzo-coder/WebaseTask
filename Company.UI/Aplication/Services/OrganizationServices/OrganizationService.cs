@@ -85,7 +85,7 @@ namespace Aplication.Servises
         public async Task<OrganizationGetDto> GetByIdOrganizationAsync(int Id)
         {
             var organizations =  await _organizationRepasitory.GetByIdAsync(Id);
-            return organizations != null?  _mapper.Map<OrganizationGetDto> (organizations):null;
+            return organizations != null?  _mapper.Map<OrganizationGetDto> (organizations):null!;
         }
 
         public async Task<OrganizationGetDto> UpdateOrganizationAsync(OrganizationUpdateDto organization)

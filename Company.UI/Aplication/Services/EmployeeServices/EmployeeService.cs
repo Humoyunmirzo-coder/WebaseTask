@@ -82,7 +82,7 @@ namespace Aplication.Services.EmployeeServices
         public async Task<EmployeeGetDto> GetByIdEmployeeAsync(int id)
         {
             var employee = await _repository.GetByIdAsync(id);
-            return employee != null ? _mapper.Map<EmployeeGetDto>(employee) : null;
+            return employee != null? _mapper.Map<EmployeeGetDto>(employee) : null!;
         }
 
         public async Task<EmployeeGetDto> UpdateEmployeeAsync(EmployeeUpdateDto employeeDto)
