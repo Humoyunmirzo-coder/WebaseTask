@@ -15,7 +15,7 @@ using System.Text;
 
 namespace Company.UI.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[action]")]
 [ApiController]
 
 
