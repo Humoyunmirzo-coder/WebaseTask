@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[action]")]
     [ApiController]
     public class ReportController : ControllerBase
     {
