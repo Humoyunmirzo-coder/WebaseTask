@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Company.UI.Controllers
 {
-    [Route("api/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace Company.UI.Controllers
         }
 
         [HttpGet("export")]
-        public async Task<IActionResult> ExportToExcel()
+        public async Task<IActionResult> PersonExportToExcel()
         {
             var persons = await _employeeService.GetAllEmployeesAsync();
             await _employeeService.EmployeeCreateExcelFileAsync(persons);
