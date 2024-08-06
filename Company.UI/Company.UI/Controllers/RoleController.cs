@@ -129,8 +129,6 @@ namespace Company.UI.Controllers
         [HttpGet("export")]
         public async Task<IActionResult> AllRoleExportToExcel()
         {
-
-
             var persons = await _roleService.GetAllRoleAsync();
             await _roleService.RoleCreateExcelFileAsync(persons);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "D:\\hp.xlsx");
