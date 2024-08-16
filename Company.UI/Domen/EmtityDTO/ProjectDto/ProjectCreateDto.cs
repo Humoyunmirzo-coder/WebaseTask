@@ -10,7 +10,6 @@ namespace Domen.EmtityDTO.ProjectDto
 {
     public  class ProjectCreateDto : ProjectBaseDto
     {
-
         public int? Ownerid { get; set; }
         public int? ProjectTypeId { get; set; }
         public int? ProjectLevelId { get; set; }

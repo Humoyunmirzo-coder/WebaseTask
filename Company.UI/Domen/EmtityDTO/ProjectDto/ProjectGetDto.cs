@@ -8,11 +8,8 @@ namespace Domen.EmtityDTO.ProjectDto
 {
     public  class ProjectGetDto : ProjectBaseDto
     {
-
         public int Id { get; set; }
         public int? ProjectTypeId { get; set; }
-        public int? Organizationid { get; set; }
-
-        
+        public int? Organizationid { get; set; }      
     }
 }
