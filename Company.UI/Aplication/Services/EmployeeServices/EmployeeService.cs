@@ -66,7 +66,6 @@ namespace Aplication.Services.EmployeeServices
                     worksheet.Cells[i + 2, 4].Value = persons[i].Salary;
                 }
 
-                // Excel faylini saqlash
                 var fileInfo = new FileInfo("D:\\hp.xlsx");
                 await package.SaveAsAsync(fileInfo);
             }
