@@ -59,7 +59,6 @@ namespace Aplication.Services.EmployeeServices
                 worksheet.Cells[1, 3].Value = "Email";
                 worksheet.Cells[1, 4].Value = "Salary";
 
-                // Ma'lumotlarni yozish
                 for (int i = 0; i < persons.Count; i++)
                 {
                     worksheet.Cells[i + 2, 1].Value = persons[i].Id;
