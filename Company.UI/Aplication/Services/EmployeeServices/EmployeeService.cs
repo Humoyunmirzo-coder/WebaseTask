@@ -53,7 +53,6 @@ namespace Aplication.Services.EmployeeServices
             {
                 var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                // Sarlavhalarni yozish
                 worksheet.Cells[1, 1].Value = "ID";
                 worksheet.Cells[1, 2].Value = "EmployeeName";
                 worksheet.Cells[1, 3].Value = "Email";
