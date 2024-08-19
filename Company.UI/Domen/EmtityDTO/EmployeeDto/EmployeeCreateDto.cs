@@ -2,8 +2,6 @@
 {
     public class EmployeeCreateDto : EmployeeBeseDto
     {
-
-
         public int UserId { get; set; }
         public string EmployeeName { get; set; } = null!;
         public int? EmployeeLevel { get; set; }
@@ -13,8 +11,5 @@
         public int? Departmentid { get; set; }
         public decimal Salary { get; set; }
         public bool Isactive { get; set; }
-
-
-
     }
 }
