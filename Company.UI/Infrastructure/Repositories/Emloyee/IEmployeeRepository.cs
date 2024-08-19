@@ -10,4 +10,7 @@ namespace Infrastructure.Repositories.Emloyee;
 
 public interface IEmployeeRepository : IGenericRepository<Employee>
 {
+
+
+
 }

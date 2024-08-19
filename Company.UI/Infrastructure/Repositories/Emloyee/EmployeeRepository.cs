@@ -14,4 +14,5 @@ public class EmployeeRepository : GenericRepository<Employee>, IEmployeeReposito
     public EmployeeRepository(ConpanyDbContext conpanyDbContext) : base(conpanyDbContext)
     {
     }
+
 }
