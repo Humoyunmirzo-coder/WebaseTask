@@ -40,7 +40,6 @@ public class AuthController : ControllerBase
         {
             return BadRequest("Notori nimadir boldi");
         }
-
         var user = await _userService.RegisterAsync(createUser);
 
         return Ok();
