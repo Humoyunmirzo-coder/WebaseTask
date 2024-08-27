@@ -21,14 +21,5 @@ namespace Company.UI.Logging
             throw new NotImplementedException();
         }
 
-        
-        //    var result = await _repository.GetAsync(id);
-        //    if (result is null)
-        //    {
-        //        _logger.LogWarning(AppLogEvents.ReadNotFound, "GetAsync({Id}) not found", id);
-        //    }
-
-        //    return result;
-        //}
     }
 }
