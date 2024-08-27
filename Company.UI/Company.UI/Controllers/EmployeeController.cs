@@ -114,6 +114,4 @@ public class EmployeeController : ControllerBase
         return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "D:\\hp.xlsx");
     }
 
-
-
 }

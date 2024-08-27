@@ -21,11 +21,7 @@ namespace Company.UI.Logging
             throw new NotImplementedException();
         }
 
-        // xatolik bor 
-        //public async Task<T> GetAsync<T>(string id)
-        //{
-        //    _logger.LogInformation(AppLogEvents.Read, "Reading value for {Id}", id);
-
+        
         //    var result = await _repository.GetAsync(id);
         //    if (result is null)
         //    {
