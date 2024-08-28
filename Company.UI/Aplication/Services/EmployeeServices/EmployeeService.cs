@@ -37,7 +37,6 @@ namespace Aplication.Services.EmployeeServices
             await _conpanyDbContext.SaveChangesAsync();
             return true;
         }
-
         public async Task EmployeeCreateExcelFileAsync(List<EmployeeGetDto> persons)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
