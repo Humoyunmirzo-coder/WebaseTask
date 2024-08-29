@@ -11,6 +11,5 @@ namespace Aplication.Services.Excel
     public  interface IPersonService
     {
 
-    //Task EmployeeCreateExcelFileAsync(List<EmployeeGetDto> persons);
     }
 }
