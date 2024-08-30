@@ -47,8 +47,6 @@ internal class Program
 
         builder.Services.AddHttpClient<IPersonService, PersonService>();
 
-
-
         builder.Services.AddAutoMapper(typeof(MappingProfile));
         builder.Services.AddEndpointsApiExplorer();
 
